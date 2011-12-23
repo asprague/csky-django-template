@@ -3,4 +3,4 @@ settings_local.py
 .*.sw*
 *~
 static/*
-uploads/*
+media/*

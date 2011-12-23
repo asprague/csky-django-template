@@ -42,9 +42,13 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
 
 TEMPLATE_LOADERS = [
+    # try to load jinja2 templates first
+    'jingo.Loader',
+
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 ]
+JINGO_EXCLUDE_APPS = ('admin','debug_toolbar',)
 
 
 STATICFILES_FINDERS = [
