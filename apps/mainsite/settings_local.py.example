@@ -1,3 +1,6 @@
+# settings_local.py is for all instance specific settings
+
+
 from settings import *
 from mainsite import TOP_DIR
 

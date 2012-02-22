@@ -1,13 +1,14 @@
 import sys
 import os
 
-
-# assume we are ./apps/mainsite/settings.py
-APPS_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
-if APPS_DIR not in sys.path:
-    sys.path.insert(0, APPS_DIR)
-
 from mainsite import TOP_DIR
+
+
+##
+#
+#  Important Stuff
+#
+##
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -33,54 +34,68 @@ MIDDLEWARE_CLASSES = [
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
 ]
 
+ROOT_URLCONF = 'mainsite.urls'
+
+##
+#
+#  Template Loading 
+#
+##
 
 TEMPLATE_LOADERS = [
-    # try to load jinja2 templates first
     'jingo.Loader',
-
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 ]
-JINGO_EXCLUDE_APPS = ('admin','debug_toolbar',)
 
+JINGO_EXCLUDE_APPS = ('admin', 'registration', 'debug_toolbar')
+
+TEMPLATE_DIRS = [
+    os.path.join(TOP_DIR, 'breakdown', 'templates'),
+]
+
+
+##
+#
+#  Static Files
+#
+##
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-
+STATIC_ROOT = os.path.join(TOP_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
+    os.path.join(TOP_DIR, 'breakdown', 'static'),
 ]
 
-STATIC_ROOT = os.path.join(TOP_DIR, 'static')
+
+##
+#
+#  Media Files
+#
+##
+
 MEDIA_ROOT = os.path.join(TOP_DIR, 'mediafiles')
 MEDIA_URL = '/media/'
-STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL+'admin/'
 
 
 
-
-
-ROOT_URLCONF = 'mainsite.urls'
-
-TEMPLATE_DIRS = (
-    os.path.join(TOP_DIR, 'templates'),
-)
-
-SITE_ID = 1
-
-USE_I18N = True
-USE_L10N = True
-
+##
+#
+#  Logging
+#
+##
 
 
 LOGGING = {
@@ -103,8 +118,36 @@ LOGGING = {
 
 
 
+##
+#
+#  Misc.
+#
+##
+
+SITE_ID = 1
+
+USE_I18N = False
+USE_L10N = False
+
+
+
+SECRET_KEY = ''
+if not SECRET_KEY:
+    # from django.core.exception import ImproperlyConfigured
+    raise AttributeError("You must specify a SECRET_KEY.")
+
 
 # try to import local_settings if present
+##
+#
+#  Import settings_production and settings_local.
+#
+##
+try:
+    from settings_production import *
+except ImportError as e:
+    pass
+
 try:
     from settings_local import *
 except ImportError as e:
