@@ -14,11 +14,12 @@ urlpatterns = patterns('',
 )
 
 
-if getattr(settings, 'DEBUG', False) or getattr(settings, 'DEBUG_STATIC', False):
-    # If we are in debug mode, prepend a rule to urlpatterns to serve the static media
-    import re
+if getattr(settings, 'DEBUG', True) or getattr(settings, 'DEBUG_MEDIA', True):
+    media_url = getattr(settings, 'MEDIA_URL', '/media/')
+    if media_url[0] == '/':
+        media_url = media_url[1:]
     urlpatterns = patterns('',
-        url(r'^%s(?P<path>.*)$' % re.escape(settings.STATIC_URL), 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT
+        url(r'^%s(?P<path>.*)$' % (media_url,), 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT
         }),
     ) + urlpatterns
