@@ -132,9 +132,6 @@ USE_L10N = False
 
 
 SECRET_KEY = ''
-if not SECRET_KEY:
-    # from django.core.exception import ImproperlyConfigured
-    raise AttributeError("You must specify a SECRET_KEY.")
 
 
 # try to import local_settings if present
