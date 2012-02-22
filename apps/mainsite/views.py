@@ -1,6 +1,7 @@
 from django import http
 from django import template
 from django.conf import settings
+from django.shortcuts import render
 
 
 def error500(request, template_name='500.html'):
@@ -17,3 +18,5 @@ def error404(request, template_name='404.html'):
     })
     return http.HttpResponseNotFound(t.render(context))
 
+def home(request, *args, **kwargs):
+    return render(request, 'home.html', {})

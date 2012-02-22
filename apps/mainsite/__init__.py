@@ -2,7 +2,7 @@ import sys
 import os
 
 
-__all__ = ['APPS_DIR','TOP_DIR','import_settings']
+__all__ = ['APPS_DIR','TOP_DIR']
 
 # assume we are ./apps/mainsite/__init__.py
 APPS_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
