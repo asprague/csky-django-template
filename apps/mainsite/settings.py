@@ -31,20 +31,11 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = [
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-]
-
 ROOT_URLCONF = 'mainsite.urls'
 
 ##
 #
-#  Template Loading 
+#  Templates
 #
 ##
 
@@ -54,11 +45,20 @@ TEMPLATE_LOADERS = [
     'django.template.loaders.app_directories.Loader',
 ]
 
-JINGO_EXCLUDE_APPS = ('admin', 'registration', 'debug_toolbar')
-
 TEMPLATE_DIRS = [
     os.path.join(TOP_DIR, 'breakdown', 'templates'),
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+]
+
+JINGO_EXCLUDE_APPS = ('admin', 'registration', 'debug_toolbar')
 
 
 ##
