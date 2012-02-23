@@ -33,6 +33,8 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'mainsite.urls'
 
+SECRET_KEY = ''
+
 ##
 #
 #  Templates
@@ -128,11 +130,6 @@ SITE_ID = 1
 
 USE_I18N = False
 USE_L10N = False
-
-
-
-SECRET_KEY = ''
-
 
 ##
 #
