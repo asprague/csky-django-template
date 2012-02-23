@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'mainsite',
 ]
 
-
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -34,6 +33,7 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'mainsite.urls'
 
 SECRET_KEY = ''
+
 
 ##
 #
@@ -92,13 +92,11 @@ MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL+'admin/'
 
 
-
 ##
 #
 #  Logging
 #
 ##
-
 
 LOGGING = {
     'version': 1,
@@ -119,7 +117,6 @@ LOGGING = {
 }
 
 
-
 ##
 #
 #  Misc.
@@ -131,11 +128,13 @@ SITE_ID = 1
 USE_I18N = False
 USE_L10N = False
 
+
 ##
 #
 #  Import settings_production and settings_local.
 #
 ##
+
 try:
     from settings_production import *
 except ImportError as e:
