@@ -134,7 +134,6 @@ USE_L10N = False
 SECRET_KEY = ''
 
 
-# try to import local_settings if present
 ##
 #
 #  Import settings_production and settings_local.
